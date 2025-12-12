@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-shdo <mustafa.el-shdouh@student.42.    +#+  +:+       +#+        */
+/*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/11 18:17:36 by mel-shdo          #+#    #+#             */
-/*   Updated: 2025/12/11 18:58:49 by mel-shdo         ###   ########.fr       */
+/*   Created: 2025/12/12 17:42:55 by mel-shdo          #+#    #+#             */
+/*   Updated: 2025/12/12 17:43:00 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
 #include "libft.h"
