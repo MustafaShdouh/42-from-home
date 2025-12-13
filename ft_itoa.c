@@ -6,12 +6,12 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 17:41:35 by mel-shdo          #+#    #+#             */
-/*   Updated: 2025/12/12 17:43:00 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2025/12/13 15:02:26 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stddef.h>
+//#include <stdlib.h>
+//#include <stddef.h>
 #include "libft.h"
 //#include <stdio.h>
 //#include <limits.h>
