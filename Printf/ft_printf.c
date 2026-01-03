@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-shdo <mel-shdo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 16:56:33 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/01/02 19:31:48 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/01/03 14:13:43 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			if (str[i + 1] == '\0')
-				break;
+				break ;
 			print_length += ft_formats(args, str[i + 1]);
 			i++;
 		}
