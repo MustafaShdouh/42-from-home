@@ -8,10 +8,10 @@ The goal of this project is to recode the famous C library function `printf`. Th
 ## Instructions
 
 ### 1. Compilation
-To compile the library, run the following command in the root directory:```bash
-
+To compile the library, run the following command in the root directory:
+```bash
 make
-
+```
 This will automatically:
 1. Compile the internal libft library.
 2. Copy libft.a to the root.

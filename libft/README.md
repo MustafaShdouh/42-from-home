@@ -30,8 +30,10 @@ Functions to manipulate lists:
 
 ### 1. Compilation
 
-To compile the library, run the following command in the root directory:```bash
+To compile the library, run the following command in the root directory:
+```bash
 make
+```
 This will generate the libft.a static library file.
 Other make commands:
 
