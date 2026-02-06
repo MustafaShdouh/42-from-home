@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_adaptive.c                                    :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/04 22:05:48 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/04 22:20:17 by mel-shdo         ###   ########.fr       */
+/*   Created: 2025/12/12 17:42:52 by mel-shdo          #+#    #+#             */
+/*   Updated: 2025/12/12 17:43:00 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+//#include <stddef.h>
 
-void	sort_adaptive(t_stack **a, t_stack **b)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	float	disorder;
+	size_t	start;
+	size_t	end;
+	char	*str;
 
-	disorder = compute_disorder(*a);
-	if (disorder < 0.2f)
-		sort_simple(a, b);
-	else if (disorder < 0.5f)
-		sort_medium(a, b);
-	else
-		sort_complex(a, b);
+	start = 0;
+	if (!s1 || !set)
+		return (NULL);
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && ft_strchr(set, s1[end - 1]))
+		end--;
+	str = ft_substr(s1, start, end - start);
+	return (str);
 }

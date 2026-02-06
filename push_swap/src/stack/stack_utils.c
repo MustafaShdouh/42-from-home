@@ -6,7 +6,7 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 19:28:40 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/04 20:06:04 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/06 21:21:13 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,33 @@
 
 int	stack_size(t_stack *stack)
 {
-	//returns number of elements in stack
+	int	count;
+
+	count = 0;
+	while (stack != NULL)
+	{
+		stack = stack->next;
+		count++;
+	}
+	return (count);
 }
 
 //free_stack needs to modify the stack so we send **stack to it to prevent dangling pointer
 void free_stack(t_stack **stack)
 {
-	//free the stack and set pointers to NULL
+	t_stack	*temp;
+	t_stack	*current;
+
+	if (!stack || !*stack)
+		return ;
+	current = *stack;
+	while (current)
+	{
+		temp = current->next;
+		free(current);
+		current = temp;
+	}
+	*stack = NULL;
 }
 
 int	is_sorted(t_stack *stack)

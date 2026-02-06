@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rorate.c                                   :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/04 19:17:06 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/04 19:20:51 by mel-shdo         ###   ########.fr       */
+/*   Created: 2025/12/12 17:41:50 by mel-shdo          #+#    #+#             */
+/*   Updated: 2025/12/12 17:43:00 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+//#include <unistd.h>
 
-void	rra(t_stack **a)
+void	ft_putchar_fd(char c, int fd)
 {
-	//Shift down all elements of stack a by one. The last element becomes the first one.
-}
-
-void	rrb(t_stack **b)
-{
-	//Shift down all elements of stack b by one. The last element becomes the first one.
-}
-
-void	rrr(t_stack **a, t_stack **b)
-{
-	//rra and rrb at the same time.
+	write(fd, &c, 1);
 }

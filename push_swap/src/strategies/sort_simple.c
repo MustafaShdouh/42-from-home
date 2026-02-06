@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_tiny.c                                        :+:      :+:    :+:   */
+/*   sort_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/04 19:59:50 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/04 21:52:11 by mel-shdo         ###   ########.fr       */
+/*   Created: 2026/02/06 20:51:45 by mel-shdo          #+#    #+#             */
+/*   Updated: 2026/02/06 21:22:57 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,3 @@ void	sort_three(t_stack **a)
 	//if the first number is smaller than the second then do nothing (no code for this possibility)
 }
 
-// this method is for stacks that have 4 or 5 inputs
-void	sort_five(t_stack **a, t_stack **b)
-{
-	//made so that it can point at the smallest number
-	t_stack *smallest;
-
-	//while the stack is greater than 3, it cant be sorted with sort_three(), so we reduce the number of elements until theyre three
-	while (stack_size(*a) > 3)
-	{
-		//we make smallest point to the smallest value
-		smallest = find_min(*a);
-		//while the top of the stack is not the smallest value we keep rotating until it is on top
-		while (*a != smallest)
-			ra(a);
-		//we then put the smallest value in stack b
-		pb(a, b);
-	}
-	//here we are guaranteed to have 3 values, so we just call sort_three()
-	sort_three(a);
-	//here we make sure the values in stack b (which are sorted from biggest to smallest) are pushed back into b (biggest pushed first)
-	while (*b)
-		pa(a, b);
-}

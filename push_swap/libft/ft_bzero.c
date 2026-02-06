@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_Init.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/04 18:52:59 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/04 19:00:37 by mel-shdo         ###   ########.fr       */
+/*   Created: 2025/12/09 19:54:48 by mel-shdo          #+#    #+#             */
+/*   Updated: 2025/12/09 20:27:02 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+//#include <stdio.h>
+//#include <string.h>
+//#include <stddef.h>
 
-//this will be used to implement functions to initialize the stack
-
-t_stack	stack_new(int value)
+void	ft_bzero(void *s, size_t n)
 {
-	//add a new value to stack
+	ft_memset(s, 0, n);
 }
 
-t_stack stack_add_back(t_stack **stack, t_stack *new)
+/*int	main(void)
 {
-	//add a new node at the bottom of the stack
-}
-
-t_stack *stack_last(t_stack *stack)
-{
-	//returns a pointer to the last node in the stack
-}
+	char buffer[50];
+    for (int i = 0; i < 50; i++) {
+        buffer[i] = (char)('A' + (i % 26));
+    }
+    printf("Buffer before bzero: %s\n", buffer);
+    ft_bzero(buffer, 48);
+    printf("Buffer after bzero: %c\n", buffer[49]);
+}*/

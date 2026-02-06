@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:14:47 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/04 19:06:16 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/06 21:21:44 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//this checks the format and syntax of the entered arguments, for example '+s', or '-w', and sends an error boolean
+//this checks the format and syntax of the entered arguments,
+//for example '+s', or '-w', and sends an error boolean
 int	error_syntax(char *str_n)
 {
 	//checks if the input is either a sign or number
@@ -45,31 +46,6 @@ int	error_duplicate(t_stack *a, int n)
 	}
 	//returns zero if there are no errors
 	return (0);
-}
-
-//this atoi handles integers that are higher than the integer limit, to avoid the numbers from looping back to the negatives
-long ft_atoi(const char *str)
-{
-	long	res;
-	int	sign;
-	int	i;
-
-	i = 0;
-	sign = 1;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	} 
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = (res * 10) + (str[i] - '0');
-		i++;
-	}
-	return (res * sign);
 }
 
 //this is a dumb function called ONLY if error_syntax or error_duplicate return the value 1 (called in main)

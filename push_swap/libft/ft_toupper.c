@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/04 19:14:09 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/04 19:16:40 by mel-shdo         ###   ########.fr       */
+/*   Created: 2025/12/01 12:51:42 by mel-shdo          #+#    #+#             */
+/*   Updated: 2025/12/13 19:21:17 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+//#include <stdio.h>
 
-void	ra(t_stack **a)
+int	ft_toupper(int c)
 {
-	//Shift up all elements of stack a by one. The first element becomes the last one.
+	if (c >= 97 && c <= 122)
+		c -= 32;
+	return (c);
 }
 
-void	rb(t_stack **b)
+/*int	main(void)
 {
-	//Shift up all elements of stack b by one. The first element becomes the last one.
-}
+	char	c;
 
-void	rr(t_stack **a, t_stack **b)
-{
-	//ra and rb at the same time.
-}
+	c = 'a';
+	printf("Before function: %c\n", c);
+	c = ft_toupper(c);
+	printf("After function: %c\n", c);
+}*/
