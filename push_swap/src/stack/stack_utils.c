@@ -26,7 +26,7 @@ int	stack_size(t_stack *stack)
 }
 
 //free_stack needs to modify the stack so we send **stack to it to prevent dangling pointer
-void free_stack(t_stack **stack)
+void	free_stack(t_stack **stack)
 {
 	t_stack	*temp;
 	t_stack	*current;
@@ -45,15 +45,47 @@ void free_stack(t_stack **stack)
 
 int	is_sorted(t_stack *stack)
 {
-	//checks if the stack is sorted
+	if (!stack)
+		return 1;
+	while (stack->next)
+	{
+		if (stack->content > stack->next->content)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
 }
 
-t_stack *find_min(t_stack *stack)
+//returns node with the smallest number
+int	find_min(t_stack *stack)
 {
-	//returns node with the smallest number
+	int	min;
+
+	if (!stack)
+		return (0);
+	min = stack->content;
+	while (s)
+	{
+		if (min >stack->content)
+			min = stack->content;
+		stack = stack->next;
+	}
+	return (min);
 }
 
-t_stack *find_max(t_stack *stack)
+//returns node with the biggest number
+int	find_max(t_stack *stack)
 {
-	//returns node with the biggest number
+	int	max;
+	
+	if (!stack)
+		return (0);
+	max = stack->content;
+	while (s)
+	{
+		if (max < stack->content)
+			max = stack->content;
+		stack = stack->next;
+	}
+	return (max);
 }
