@@ -6,20 +6,56 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:04:22 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/04 22:29:25 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/08 19:27:11 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
+#include "../libft/libft.h"
 
-static int parse_flag(char *arg, t_strategy *mode, int *bench)
+static int	parse_flag(char *arg, t_strategy *mode, int *bench)
 {
-	// parses the input to decide the mode (simple, medium, complex, adaptive or bench)
+	if (ft_strncmp(arg, "--", 2) != 0)
+		return (0);
+	if (ft_strcmp(arg, "--simple") == 0)
+		*mode = START_SIMPLE;
+	else if (ft_strcmp(arg, "--medium") == 0)
+		*mode = START_MEDIUM;
+	else if (ft_strcmp(arg, "--complex") == 0)
+		*mode = START_COMPLEX;
+	else if (ft_strcmp(arg, "--adaptive") == 0)
+		*mode = START_ADAPTIVE;
+	else if (ft_strcmp(arg, "--bench") == 0)
+		*bench = 1;
+	else
+		return (0);
+	return (1);
 }
 
 static void	print_bench(t_strategy mode, float disorder, int ops)
 {
-	//print the bench output
+	ft_putstr_fd("[bench] disorder: ", 2);
+	ft_putfloat_fd(disorder * 100, 2);
+	ft_putstr_fd("%%\n", 2);
+	ft_putstr_fd("[bench] strategy: ", 2);
+	if (mode == START_SIMPLE)
+		ft_putstr_fd("Simple (Min-Max) | O(n^2)\n", 2);
+	else if (mode == START_MEDIUM)
+		ft_putstr_fd("Medium (Chunk Sort) | O(n * sqrt(n)\n", 2);
+	else if (mode == START_COMPLEX)
+		ft_putstr_fd("Complex (Radix) | O(n log n)\n", 2);
+	else if (mode == START_ADAPTIVE)
+	{
+		if (disorder <= 0.2)
+			ft_putstr_fd("Adaptive / O(n^2)\n", 2);
+		else if (disorder <= 0.5)
+			ft_putstr_fd("Adaptive / O(n * sqrt(n)\n", 2);
+		else
+			ft_putstr_fd("Adaptive / O(n log n)\n", 2);
+	}
+	ft_putstr_fd("[bench] Total Ops: ", 2);
+	ft_putnbr_fd(ops, 2);
+	ft_putstr_fd("\n", 2);
 }
 
 //this main is VERY incomplete
@@ -53,7 +89,6 @@ int	main(int argc, char **argv)
 		else if (!strcmp(argv[1], "--bench")) mode = MODE_BENCH;
 		start_index++;
 	}
-
 	parse_args(argc, argv, &stack_a);
 
 	//implement the sorting algo here

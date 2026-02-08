@@ -6,11 +6,33 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 21:02:45 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/06 21:07:34 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/08 19:25:59 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	index_stack(t_stack *stack)
+{
+	t_stack	*ptr;
+	t_stack	*runner;
+	int		count;
+
+	ptr = stack;
+	while (ptr)
+	{
+		count = 0;
+		runner = stack;
+		while (runner)
+		{
+			if (runner->content < ptr->content)
+				count++;
+			runner = runner->next;
+		}
+		ptr->index = count;
+		ptr = ptr->next;
+	}
+}
 
 long ft_atol(const char *str)
 {
@@ -34,4 +56,33 @@ long ft_atol(const char *str)
 		i++;
 	}
 	return (res * sign);
+}
+
+void	ft_putfloat_fd(double num, int fd)
+{
+	int	int_part;
+	int	dec_part;
+
+	if (num < 0)
+	{
+		write(2, "-", 1);
+		num = -num;
+	}
+	int_part = (int)num;
+	dec_part = (int)((num - int_part) * 100);
+	ft_putnbr_fd(int_part, 2);
+	write(2, ".", 1);
+	if (dec_part < 10)
+		write(2, "0", 1);
+	ft_putnbr_fd(dec_part, 2);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

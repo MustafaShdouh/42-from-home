@@ -6,7 +6,7 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 19:28:40 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/06 21:21:13 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/08 16:16:50 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	stack_size(t_stack *stack)
 	return (count);
 }
 
-//free_stack needs to modify the stack so we send **stack to it to prevent dangling pointer
 void	free_stack(t_stack **stack)
 {
 	t_stack	*temp;
@@ -56,7 +55,6 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-//returns node with the smallest number
 int	find_min(t_stack *stack)
 {
 	int	min;
@@ -64,16 +62,15 @@ int	find_min(t_stack *stack)
 	if (!stack)
 		return (0);
 	min = stack->content;
-	while (s)
+	while (stack)
 	{
-		if (min >stack->content)
+		if (min > stack->content)
 			min = stack->content;
 		stack = stack->next;
 	}
 	return (min);
 }
 
-//returns node with the biggest number
 int	find_max(t_stack *stack)
 {
 	int	max;
@@ -81,7 +78,7 @@ int	find_max(t_stack *stack)
 	if (!stack)
 		return (0);
 	max = stack->content;
-	while (s)
+	while (stack)
 	{
 		if (max < stack->content)
 			max = stack->content;

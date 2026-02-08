@@ -6,7 +6,7 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:58:46 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/06 21:10:01 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/08 19:26:42 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,27 @@ int find_min(t_stack *stack);
 int find_max(t_stack *stack);
 
 //operations:
-static void push_stack(t_stack **a, t_stack **b);
 void pa(t_stack **a, t_stack **b);
 void pb(t_stack **a, t_stack **b);
-static void swap_stack(t_stack **s);
 void	sa(t_stack **a);
 void	sb(t_stack **b);
 void	ss(t_stack **a, t_stack **b);
-static void rotate_stack(t_stack **s);
 void	ra(t_stack **a);
 void	rb(t_stack **b);
 void	rr(t_stack **a, t_stack **b);
-static void rev_rotate_stack(t_stack **s);
 void	rra(t_stack **a);
 void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 //disorder:
 double	compute_disorder(t_stack *a);
 // strategies:
-void	sort_simple(t_stack **a, t_stack **b, int *count);
-void	sort_complex(t_stack **a, t_stack **b, int *count);
+void	sort_simple(t_stack **a, t_stack **b);
+void	sort_medium(t_stack **a, t_stack **b);
+void	sort_complex(t_stack **a, t_stack **b);
 void	index_stack(t_stack *stack);
+void	ft_putfloat_fd(double num, int fd);
+long ft_atol(const char *str);
+int	ft_strcmp(const char *s1, const char *s2);
+void parse_args(int argv, char **argv, t_stack **stack_a);
 
 #endif

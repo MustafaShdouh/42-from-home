@@ -6,30 +6,66 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 20:51:45 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/06 21:22:57 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/08 17:03:36 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// this method is for stacks with only three inputs
 void	sort_three(t_stack **a)
 {
-	t_stack	*big_node;
+	int	max_val;
 
-	//find where the biggest number is and point to it
-	big_node = find_max(*a);
-	//if it is at the top then execute ra and put it at the bottom
-	if (*a == big_node)
+	max_val = find_max(*a);
+	if ((*a)->content == max_val)
 		ra(a);
-	//if it is in the middle then execute rra and put it at the bottom
-	else if ((*a)->next == big_node)
+	else if ((*a)->next->content == max_val)
 		rra(a);
-	//if it is at the bottom then do nothing (no code for this possibility)
-	
-	//if the first number is bigger than the second then execute sa and swap the numbers
-	if ((*a)->content > (a*)->next->content)
+	if ((*a)->content > (*a)->next->content)
 		sa(a);
-	//if the first number is smaller than the second then do nothing (no code for this possibility)
 }
 
+static void	move_top(t_stack **a, int val)
+{
+	int		size;
+	int		idx;
+	t_stack	*tmp;
+
+	size = stack_size(*a);
+	idx = 0;
+	tmp = *a;
+	while (tmp && tmp->content != val)
+	{
+		tmp = tmp->next;
+		idx++;
+	}
+	if (idx <= size / 2)
+	{
+		while ((*a)->content != val)
+			ra(a);
+	}
+	else
+		while ((*a)->content != val)
+			rra(a);
+}
+
+void	sort_simple(t_stack **a, t_stack **b)
+{
+	int	min_val;
+
+	if (stack_size(*a) == 2)
+	{
+		if ((*a)->content > (*a)->next->content)
+			sa(a);
+		return ;
+	}
+	while (stack_size(*a) > 3)
+	{
+		min_val = find_min(*a);
+		move_top(a, min_val);
+		pb(a, b);
+	}
+	sort_three(a);
+	while (*b)
+		pa(a, b);
+}
