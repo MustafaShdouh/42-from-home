@@ -6,13 +6,12 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 21:22:41 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/08 18:43:23 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/10 18:29:52 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//need to edit this to fit disorder
 static int	find_max_pos(t_stack *b, int *max_idx)
 {
 	int		i;

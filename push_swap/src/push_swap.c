@@ -6,7 +6,7 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:04:22 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/08 19:27:11 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/10 20:46:16 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,34 @@ static void	print_bench(t_strategy mode, float disorder, int ops)
 			ft_putstr_fd("Adaptive / O(n * sqrt(n)\n", 2);
 		else
 			ft_putstr_fd("Adaptive / O(n log n)\n", 2);
-	}
+	}	
 	ft_putstr_fd("[bench] Total Ops: ", 2);
 	ft_putnbr_fd(ops, 2);
 	ft_putstr_fd("\n", 2);
 }
 
-//this main is VERY incomplete
+static void	execute_sort(t_stack **a, t_stack **b, t_strategy mode)
+{
+	int	size;
+
+	size = ft_lstsize(*a);
+	if (size == 2)
+		sa(a);
+	else if (size == 3)
+		sort_three(a);
+	else
+	{
+		if (mode == START_ADAPTIVE)
+			sort_adaptive(a, b);
+		else if (mode == START_SIMPLE)
+			sort_simple(a, b);
+		else if (mode == START_MEDIUM)
+			sort_medium(a, b);
+		else if (mode == START_COMPLEX)
+			sort_complex(a, b);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;

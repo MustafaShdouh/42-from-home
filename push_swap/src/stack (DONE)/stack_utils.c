@@ -6,7 +6,7 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 19:28:40 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/08 16:16:50 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/10 20:00:15 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,14 @@ int	stack_size(t_stack *stack)
 void	free_stack(t_stack **stack)
 {
 	t_stack	*temp;
-	t_stack	*current;
 
 	if (!stack || !*stack)
 		return ;
-	current = *stack;
-	while (current)
+	while (*stack)
 	{
-		temp = current->next;
-		free(current);
-		current = temp;
+		temp = (*stack)->next;
+		free(*stack);
+		*stack = temp;
 	}
 	*stack = NULL;
 }
@@ -46,7 +44,7 @@ int	is_sorted(t_stack *stack)
 {
 	if (!stack)
 		return 1;
-	while (stack->next)
+	while (stack && stack->next)
 	{
 		if (stack->content > stack->next->content)
 			return (0);
