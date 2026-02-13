@@ -6,7 +6,7 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 20:53:30 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/10 20:46:18 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/13 23:29:06 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	sort_complex(t_stack **a, t_stack **b)
 {
 	int	size;
 
-	size = ft_lstsize(*a);
-	index_stack(a);
+	size = stack_size(*a);
+	index_stack(*a);
 	radix_sort(a, b, size);
 }

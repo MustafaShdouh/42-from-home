@@ -6,7 +6,7 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 21:22:41 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/10 18:29:52 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/14 01:14:29 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,11 @@ void	sort_medium(t_stack **a, t_stack **b)
 				rb(b);
 			i++;
 		}
-		else if ((*a)->index <= (i++) + range)
+		else if ((*a)->index <= i + range)
+		{
 			pb(a, b);
+			i++;
+		}
 		else
 			ra(a);
 	}

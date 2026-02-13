@@ -6,7 +6,7 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 19:11:46 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/06 20:54:43 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/14 00:50:17 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,16 @@ static void swap_stack(t_stack **s)
 void	sa(t_stack **a)
 {
 	swap_stack(a);
+	get_stats()->sa++;
+	if (get_stats()->print_ops)
 	write(1, "sa\n", 3);
 }
 
 void	sb(t_stack **b)
 {
 	swap_stack(b);
+	get_stats()->sb++;
+	if (get_stats()->print_ops)
 	write(1, "sb\n", 3);
 }
 
@@ -46,5 +50,7 @@ void	ss(t_stack **a, t_stack **b)
 {
 	swap_stack(a);
 	swap_stack(b);
+	get_stats()->ss++;
+	if (get_stats()->print_ops)
 	write(1, "ss\n", 3);
 }

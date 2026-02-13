@@ -6,25 +6,25 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:14:47 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/10 20:02:44 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/14 01:12:13 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int error_syntax(char *str_n)
+int	error_syntax(char *str_n)
 {
-    if (*str_n == '+' || *str_n == '-')
-        str_n++;
-    if (*str_n == '\0') 
-        return (1);
-    while (*str_n)
-    {
-        if (*str_n < '0' || *str_n > '9')
-            return (1);
-        str_n++;
-    }
-    return (0);
+	if (*str_n == '+' || *str_n == '-')
+		str_n++;
+	if (*str_n == '\0')
+		return (1);
+	while (*str_n)
+	{
+		if (*str_n < '0' || *str_n > '9')
+			return (1);
+		str_n++;
+	}
+	return (0);
 }
 
 int	error_duplicate(t_stack *a, int n)

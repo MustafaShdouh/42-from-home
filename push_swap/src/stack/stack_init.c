@@ -6,7 +6,7 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:52:59 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/08 18:48:42 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/13 23:23:12 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_stack	*stack_new(int value)
 	new = (t_stack *)malloc(sizeof(t_stack));
 	if (!new)
 		return (NULL);
-	new->value = value;
+	new->content = value;
 	new->index = -1;
 	new->next = NULL;
 	new->prev = NULL;
@@ -43,7 +43,7 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 		return ;
 	if (!*stack)
 	{
-		*stack = new_node;
+		*stack = new;
 		return ;
 	}
 	last = stack_last(*stack);

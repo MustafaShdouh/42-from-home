@@ -6,7 +6,7 @@
 #    By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/04 19:39:10 by mel-shdo          #+#    #+#              #
-#    Updated: 2026/02/06 21:00:15 by mel-shdo         ###   ########.fr        #
+#    Updated: 2026/02/14 00:27:41 by mel-shdo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS		= -Wall -Werror -Wextra
 
 LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libft.a
-INCLUDES	= -I $(LIBFT_DIR)
+INCLUDES	= -I . -I $(LIBFT_DIR)
 
 SRC_DIR     = src
 STACK_DIR   = src/stack
@@ -28,6 +28,8 @@ SRCS        = $(SRC_DIR)/push_swap.c \
               $(SRC_DIR)/metrics.c \
               $(SRC_DIR)/errors.c \
               $(SRC_DIR)/utils_lib.c \
+			  $(SRC_DIR)/ft_split_whitespace.c\
+			  $(SRC_DIR)/bench.c\
               $(STACK_DIR)/stack_init.c \
               $(STACK_DIR)/stack_utils.c \
               $(OPS_DIR)/push.c \
@@ -50,7 +52,7 @@ $(NAME): $(LIBFT) $(OBJS)
 		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 %.o : %.c
-		$(CC) $(CFLAGS) -c $< -o $@
+		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 		rm -f $(OBJS)

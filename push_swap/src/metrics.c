@@ -6,7 +6,7 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:04:07 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/08 18:18:19 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/13 23:51:25 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ double	compute_disorder(t_stack *a)
 		while (j)
 		{
 			total_pairs += 1;
-			if (i->value > j->value)
+			if (i->content > j->content)
 				mistake += 1;
 			j = j->next;
 		}

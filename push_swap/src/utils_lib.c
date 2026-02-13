@@ -6,11 +6,12 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 21:02:45 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/08 19:25:59 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/13 23:59:40 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft.h"
 
 void	index_stack(t_stack *stack)
 {
@@ -40,6 +41,7 @@ long ft_atol(const char *str)
 	int	sign;
 	int	i;
 
+	res = 0;
 	i = 0;
 	sign = 1;
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
@@ -65,16 +67,16 @@ void	ft_putfloat_fd(double num, int fd)
 
 	if (num < 0)
 	{
-		write(2, "-", 1);
+		write(fd, "-", 1);
 		num = -num;
 	}
 	int_part = (int)num;
 	dec_part = (int)((num - int_part) * 100);
-	ft_putnbr_fd(int_part, 2);
-	write(2, ".", 1);
+	ft_putnbr_fd(int_part, fd);
+	write(fd, ".", 1);
 	if (dec_part < 10)
-		write(2, "0", 1);
-	ft_putnbr_fd(dec_part, 2);
+		write(fd, "0", 1);
+	ft_putnbr_fd(dec_part, fd);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)

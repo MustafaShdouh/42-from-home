@@ -6,12 +6,12 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:04:22 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/10 20:46:16 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/14 01:19:49 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include "../libft/libft.h"
+#include "push_swap.h"
+#include "libft.h"
 
 static int	parse_flag(char *arg, t_strategy *mode, int *bench)
 {
@@ -26,45 +26,25 @@ static int	parse_flag(char *arg, t_strategy *mode, int *bench)
 	else if (ft_strcmp(arg, "--adaptive") == 0)
 		*mode = START_ADAPTIVE;
 	else if (ft_strcmp(arg, "--bench") == 0)
+	{
 		*bench = 1;
+		//get_stats()->print_ops = 0;
+	}
 	else
 		return (0);
 	return (1);
-}
-
-static void	print_bench(t_strategy mode, float disorder, int ops)
-{
-	ft_putstr_fd("[bench] disorder: ", 2);
-	ft_putfloat_fd(disorder * 100, 2);
-	ft_putstr_fd("%%\n", 2);
-	ft_putstr_fd("[bench] strategy: ", 2);
-	if (mode == START_SIMPLE)
-		ft_putstr_fd("Simple (Min-Max) | O(n^2)\n", 2);
-	else if (mode == START_MEDIUM)
-		ft_putstr_fd("Medium (Chunk Sort) | O(n * sqrt(n)\n", 2);
-	else if (mode == START_COMPLEX)
-		ft_putstr_fd("Complex (Radix) | O(n log n)\n", 2);
-	else if (mode == START_ADAPTIVE)
-	{
-		if (disorder <= 0.2)
-			ft_putstr_fd("Adaptive / O(n^2)\n", 2);
-		else if (disorder <= 0.5)
-			ft_putstr_fd("Adaptive / O(n * sqrt(n)\n", 2);
-		else
-			ft_putstr_fd("Adaptive / O(n log n)\n", 2);
-	}	
-	ft_putstr_fd("[bench] Total Ops: ", 2);
-	ft_putnbr_fd(ops, 2);
-	ft_putstr_fd("\n", 2);
 }
 
 static void	execute_sort(t_stack **a, t_stack **b, t_strategy mode)
 {
 	int	size;
 
-	size = ft_lstsize(*a);
+	size = stack_size(*a);
 	if (size == 2)
-		sa(a);
+	{
+		if ((*a)->content > (*a)->next->content)
+			sa(a);
+	}
 	else if (size == 3)
 		sort_three(a);
 	else
@@ -80,41 +60,38 @@ static void	execute_sort(t_stack **a, t_stack **b, t_strategy mode)
 	}
 }
 
+static void	init_vars(t_stack **a, t_stack **b, t_strategy *m, int *bench)
+{
+	*a = NULL;
+	*b = NULL;
+	*m = START_ADAPTIVE;
+	*bench = 0;
+	get_stats()->print_ops = 1;
+}
+
 int	main(int argc, char **argv)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	t_strategy mode;
-	int				bench;
-	int				ops;
-	int				i;
-	float			disorder;
-	
-	stack_a = NULL;
-	stack_b = NULL;
-	mode = START_ADAPTIVE;
-	bench = 0;
-	ops = 0;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+	t_strategy	mode;
+	int			bench;
+	int			i;
+	double		disorder;
+
+	init_vars(&stack_a, &stack_b, &mode, &bench);
 	i = 1;
-	if (argc < 2)
-		return (0);
 	while (i < argc && parse_flag(argv[i], &mode, &bench))
 		i++;
-	if (!parse_args())
-	if (ft_strncmp(argv[1], "--", 2) == 0)
-	{
-		if (!strcmp(argv[1], "--simple")) mode = MODE_SIMPLE;
-		else if (!strcmp(argv[1], "--medium")) mode = MODE_MEDIUM;
-		else if (!strcmp(argv[1], "--complex")) mode = MODE_COMPLEX;
-		else if (!strcmp(argv[1], "--adaptive")) mode = MODE_ADAPTIVE;
-		else if (!strcmp(argv[1], "--bench")) mode = MODE_BENCH;
-		start_index++;
-	}
-	parse_args(argc, argv, &stack_a);
-
-	//implement the sorting algo here
-
-	free_stack(stack_a);
-	free_stack(stack_b);
+	if (i < argc)
+		parse_args(argc - i, argv + i, &stack_a);
+	else
+		return (0);
+	disorder = compute_disorder(stack_a);
+	if (disorder > 0.0)
+		execute_sort(&stack_a, &stack_b, mode);
+	if (bench)
+		print_bench(mode, disorder);
+	free_stack(&stack_a);
+	free_stack(&stack_b);
 	return (0);
 }

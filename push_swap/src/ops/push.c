@@ -6,7 +6,7 @@
 /*   By: mel-shdo <mel-shdo@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 19:07:33 by mel-shdo          #+#    #+#             */
-/*   Updated: 2026/02/06 20:54:34 by mel-shdo         ###   ########.fr       */
+/*   Updated: 2026/02/14 00:39:50 by mel-shdo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void push_stack(t_stack **a, t_stack **b)
 {
 	t_stack *node;
 
-	if (!b || !*b || *b->next)
+	if (!b || !*b)
 		return ;
 	node = *b;
 	*b = node->next;
@@ -32,11 +32,15 @@ static void push_stack(t_stack **a, t_stack **b)
 void pa(t_stack **a, t_stack **b)
 {
 	push_stack(a, b);
-	write(1, "pa\n", 3);
+	get_stats()->pa++;
+	if (get_stats()->print_ops)
+		write(1, "pa\n", 3);
 }
 
 void pb(t_stack **a, t_stack **b)
 {
 	push_stack(b, a);
+	get_stats()->pb++;
+	if (get_stats()->print_ops)
 	write(1, "pb\n", 3);
 }
