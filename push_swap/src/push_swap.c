@@ -28,7 +28,7 @@ static int	parse_flag(char *arg, t_strategy *mode, int *bench)
 	else if (ft_strcmp(arg, "--bench") == 0)
 	{
 		*bench = 1;
-		//get_stats()->print_ops = 0;
+		get_stats()->print_ops = 0;
 	}
 	else
 		return (0);
