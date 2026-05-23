@@ -59,6 +59,7 @@ I chose this algorithm for its **simplicity and readability**. By treating the s
 4. Clean Up: The remaining characters (after the newline) are moved to a new string. The old stash is freed, and the static pointer is updated to point to this new "leftover" string, ready for the next function call.
 
 ## AI and Resources
+Used google gemini to explain some concepts to me like how to make sure the stash cleans the old stash.
 
 ### Resources Used
 * Man pages: `read(2), malloc(3), free(3), open(2).`
