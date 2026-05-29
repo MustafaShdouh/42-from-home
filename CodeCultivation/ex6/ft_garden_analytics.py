@@ -1,5 +1,5 @@
 class Plant:
-    class _statistics:
+    class _Statistics:
         def __init__(self) -> None:
             self._grow_calls = 0
             self._age_calls = 0
@@ -22,18 +22,18 @@ class Plant:
         self._name = name
         self._height = float(height) if height >= 0 else 0.0
         self._age = age if age >= 0 else 0.0
-        self._statistics = self._statistics()
+        self._baseStats = self._Statistics()
 
     def grow(self, cm: float) -> None:
         self._height += cm
-        self._statistics.record_grows()
+        self._baseStats.record_grows()
 
     def age(self, days: int) -> None:
         self._age += days
-        self._statistics.record_ages()
+        self._baseStats.record_ages()
 
     def show(self) -> str:
-        self._statistics.record_shows()
+        self._baseStats.record_shows()
         return (f"{self._name}: {round(self._height, 1)}cm, {self._age}"
                 " days old")
 
@@ -57,7 +57,7 @@ class Plant:
         return self._height
 
     def get_age(self) -> int:
-        return self._age
+        return int(self._age)
 
     @staticmethod
     def is_older_than_year(age: int) -> bool:
@@ -91,7 +91,7 @@ class Flower(Plant):
 
 
 class Tree(Plant):
-    class _treeStats(Plant._statistics):
+    class _TreeStats(Plant._Statistics):
         def __init__(self):
             super().__init__()
             self._shade_calls = 0
@@ -106,15 +106,16 @@ class Tree(Plant):
                  trunk_diameter: float):
         self._name = name
         self._height = float(height) if height >= 0 else 0.0
-        self._age = age if age >= 0 else 0.0
+        self._age = age if age >= 0 else 0
         self._trunk_diameter = float(trunk_diameter)
-        self._statistics = self._treeStats()
+        self._treeStats = self._TreeStats()
+        self._baseStats = self._treeStats
 
     def show(self) -> str:
         return (f"{super().show()}\nTrunk diameter: {self._trunk_diameter}cm")
 
     def produce_shade(self) -> None:
-        self._statistics.record_shade()
+        self._treeStats.record_shade()
         print(f"Tree {self._name} now produces a shade of "
               f"{round(self._height, 1)}"
               f"cm long and {round(self._trunk_diameter, 1)}cm wide.")
@@ -149,14 +150,14 @@ class Seed(Flower):
     def show(self) -> str:
         return (f"{super().show()}\nSeeds: {self._seeds}")
 
-    def bloom(self, seeds: int) -> None:
+    def bloom(self) -> None:
         super().bloom()
-        self._seeds = seeds
+        self._seeds = 42
 
 
 def display_statistics(plant: Plant) -> None:
     print(f"[statistics for {plant._name}]")
-    print(plant._statistics.display())
+    print(plant._baseStats.display())
 
 
 if __name__ == "__main__":
@@ -187,7 +188,7 @@ if __name__ == "__main__":
     print("[make sunflower grow, age and bloom]")
     sunflower.age(20)
     sunflower.grow(30)
-    sunflower.bloom(42)
+    sunflower.bloom()
     print(sunflower.show())
     display_statistics(sunflower)
     print("\n=== Anonymous")
