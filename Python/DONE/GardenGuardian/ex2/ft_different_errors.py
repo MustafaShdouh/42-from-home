@@ -13,7 +13,8 @@ def garden_operations(operation_number: int) -> None:
 
 def test_error_types() -> None:
     print("=== Garden Error Types Demo ===")
-    for i in range(5):
+    i = 0
+    while i < 5:
         print(f"Testing operation {i}...")
         try:
             garden_operations(i)
@@ -22,6 +23,7 @@ def test_error_types() -> None:
             print(f"Caught {e.__class__.__name__}: {e}")
         else:
             print("Operation completed successfully\n")
+        i += 1
         # or we can do
         # try:
         #     garden_operations(i)
