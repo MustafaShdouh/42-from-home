@@ -21,7 +21,7 @@ def test_error_types() -> None:
                 FileNotFoundError, TypeError) as e:
             print(f"Caught {e.__class__.__name__}: {e}")
         else:
-            print("Operation completed successfully")
+            print("Operation completed successfully\n")
         # or we can do
         # try:
         #     garden_operations(i)
