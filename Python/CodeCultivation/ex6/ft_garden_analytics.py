@@ -92,18 +92,18 @@ class Flower(Plant):
 
 class Tree(Plant):
     class _TreeStats(Plant._Statistics):
-        def __init__(self):
+        def __init__(self) -> None:
             super().__init__()
             self._shade_calls = 0
 
-        def record_shade(self):
+        def record_shade(self) -> None:
             self._shade_calls += 1
 
         def display(self) -> str:
             return (f"{super().display()}\n{self._shade_calls} shade")
 
     def __init__(self, name: str, height: float, age: int,
-                 trunk_diameter: float):
+                 trunk_diameter: float) -> None:
         self._name = name
         self._height = float(height) if height >= 0 else 0.0
         self._age = age if age >= 0 else 0
@@ -123,7 +123,7 @@ class Tree(Plant):
 
 class Vegetable(Plant):
     def __init__(self, name: str, height: float, age: int, harvest_season: str,
-                 nutritional_value: float):
+                 nutritional_value: float) -> None:
         super().__init__(name, height, age)
         self._harvest_season = harvest_season
         self._nutritional_value = nutritional_value
