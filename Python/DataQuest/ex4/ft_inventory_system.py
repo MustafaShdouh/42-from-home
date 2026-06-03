@@ -28,8 +28,17 @@ def main() -> None:
         for item, qty in inventory.items():
             percentage = round((qty / total_items) * 100, 1)
             print(f"Item {item} represents {percentage}%")
-        most_abundant = max(inventory, key=inventory.__getitem__)
-        least_abundant = min(inventory, key=inventory.__getitem__)
+        most_abundant = ""
+        least_abundant = ""
+        max_qty = -1
+        min_qty = float('inf')
+        for item, qty in inventory.items():
+            if qty > max_qty:
+                max_qty = qty
+                most_abundant = item
+            if qty < min_qty:
+                min_qty = qty
+                least_abundant = item
         print(
             f"Item most abundant: {most_abundant} with quantity "
             f"{inventory[most_abundant]}")

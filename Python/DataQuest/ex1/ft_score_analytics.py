@@ -10,10 +10,9 @@ import sys
 # structures introduced in every exercise
 def main() -> None:
     print("=== Player Score Analytics ===")
-    arg_iterator = iter(sys.argv)
-    script_name = next(arg_iterator)
+    script_name = sys.argv[0]
     scores = []
-    for arg in arg_iterator:
+    for arg in sys.argv[1:]:
         try:
             value = int(arg)
             scores.append(value)
