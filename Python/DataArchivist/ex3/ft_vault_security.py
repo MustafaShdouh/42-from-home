@@ -1,28 +1,34 @@
 #!/usr/bin/env python3
+def secure_archive(filename: str, action: str = 'r',
+                   content: str = '') -> tuple[bool, str]:
+    try:
+        if action == 'w':
+            with open(filename, 'w') as file:
+                file.write(content)
+            return (True, 'Content successfully written to file')
+        else:
+            with open(filename, 'r') as file:
+                data = file.read()
+            return (True, data)
+    except Exception as e:
+        return (False, str(e))
+
 
 def main() -> None:
-    print("=== CYBER ARCHIVES VAULT SECURITY SYSTEM ===")
-    print("Initiating secure vault access...")
-    
-    # Create the classified data file first to simulate extraction
-    with open("classified_data.txt", "w") as f:
-        f.write("[CLASSIFIED] Quantum encryption keys recovered\n[CLASSIFIED] Archive integrity: 100%\n")
+    print("=== Cyber Archives Security ===")
+    print("\nUsing 'secure_archive' to read from a nonexistent file:")
+    success, result = secure_archive('/not/existing/file')
+    print(f"({success}, \"{result}\")")
+    print("\nUsing 'secure_archive' to read from an inaccessible file:")
+    success, result = secure_archive('/etc/master.passwd')
+    print(f"({success}, \"{result}\")")
+    print("\nUsing 'secure_archive' to read from a regular file:")
+    success, result = secure_archive('ancient_fragment.txt')
+    print(f"({success}, '{repr(result)[1:-1]}')")
+    print("\nUsing 'secure_archive' to write previous content to a new file:")
+    success, result = secure_archive('new_fragment.txt', 'w', result)
+    print(f"({success}, '{result}')")
 
-    print("Vault connection established with failsafe protocols")
-    print("SECURE EXTRACTION:")
-    
-    with open("classified_data.txt", "r") as f:
-        content = f.read()
-        print(content.strip())
-        
-    print("SECURE PRESERVATION:")
-    
-    with open("new_security.txt", "w") as f:
-        f.write("[CLASSIFIED] New security protocols archived\n")
-        print("[CLASSIFIED] New security protocols archived")
-        
-    print("Vault automatically sealed upon completion")
-    print("All vault operations completed with maximum security.")
 
 if __name__ == "__main__":
     main()

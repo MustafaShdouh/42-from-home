@@ -1,18 +1,27 @@
 #!/usr/bin/env python3
+import sys
+import typing
 
 def main() -> None:
+    if len(sys.argv) != 2:
+        print("Usage: ft_ancient_text.py <file>")
+        return
+    filename = sys.argv[1]
+    print("=== Cyber Archives Recovery ===")
+    print(f"Accessing file '{filename}'")
     try:
-        file = open("ancient_fragment.txt", "r")
-        print("=== CYBER ARCHIVES DATA RECOVERY SYSTEM ===")
-        print("Accessing Storage Vault: ancient_fragment.txt")
-        print("Connection established...")
-        print("RECOVERED DATA:")
+        file: typing.IO[str] = open(filename, "r")
         content = file.read()
-        print(content.strip())
-        print("Data recovery complete. Storage unit disconnected.")
+        print("---")
+        print(content, end="")
+        if content and content[-1] != '\n':
+            print()
+        print("---")
         file.close()
-    except FileNotFoundError:
-        print("ERROR: Storage vault not found. Run data generator first.")
+        print(f"File '{filename}' closed.")
+    except Exception as e:
+        print(f"Error opening file '{filename}': {e}")
+
 
 if __name__ == "__main__":
     main()
