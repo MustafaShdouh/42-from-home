@@ -1,3 +1,4 @@
-from . import recipes
+from .recipes import lead_to_gold
 
-__all__ = ["recipes"]
+
+__all__ = ["lead_to_gold"]
