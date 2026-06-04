@@ -2,6 +2,7 @@
 import sys
 import typing
 
+
 def main() -> None:
     if len(sys.argv) != 2:
         print("Usage: ft_archive_creation.py <file>")
