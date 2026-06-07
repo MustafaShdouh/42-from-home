@@ -198,7 +198,7 @@ if __name__ == "__main__":
     ds = DataStream()
     ds.print_processors_stats()
 
-    print("Registering Numeric Processor\n")
+    print("\nRegistering Numeric Processor\n")
     numeric = NumericProcessor()
     ds.register_processor(numeric)
 
