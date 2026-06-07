@@ -1,0 +1,64 @@
+from abc import ABC, abstractmethod
+
+
+class Creature(ABC):
+    """Abstract base class for all Creatures."""
+
+    def __init__(self, name: str, creature_type: str) -> None:
+        self._name = name
+        self._creature_type = creature_type
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @property
+    def creature_type(self) -> str:
+        return self._creature_type
+
+    def describe(self) -> str:
+        return f"{self._name} is a {self._creature_type} type Creature"
+
+    @abstractmethod
+    def attack(self) -> str:
+        pass
+
+
+class Flameling(Creature):
+    """Fire type base Creature."""
+
+    def __init__(self) -> None:
+        super().__init__("Flameling", "Fire")
+
+    def attack(self) -> str:
+        return "Flameling uses Ember!"
+
+
+class Pyrodon(Creature):
+    """Fire/Flying type evolved Creature."""
+
+    def __init__(self) -> None:
+        super().__init__("Pyrodon", "Fire/Flying")
+
+    def attack(self) -> str:
+        return "Pyrodon uses Flamethrower!"
+
+
+class Aquabub(Creature):
+    """Water type base Creature."""
+
+    def __init__(self) -> None:
+        super().__init__("Aquabub", "Water")
+
+    def attack(self) -> str:
+        return "Aquabub uses Water Gun!"
+
+
+class Torragon(Creature):
+    """Water type evolved Creature."""
+
+    def __init__(self) -> None:
+        super().__init__("Torragon", "Water")
+
+    def attack(self) -> str:
+        return "Torragon uses Hydro Pump!"
