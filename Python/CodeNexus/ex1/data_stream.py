@@ -8,9 +8,6 @@ class DataProcessor(abc.ABC):
         self._data: list[tuple[int, str]] = []
         self.total_processed: int = 0
 
-    def remaining(self) -> int:
-        return len(self._data)
-
     @abc.abstractmethod
     def validate(self, data: typing.Any) -> bool:
         ...
@@ -98,21 +95,21 @@ class LogProcessor(DataProcessor):
         super().__init__()
         self.name = "Log Processor"
 
-    def _is_log_dict(self, data: typing.Any) -> bool:
-        return (
-            isinstance(data, dict)
-            and all(
+    def validate(self, data: typing.Any) -> bool:
+        if isinstance(data, dict):
+            if all(
                 isinstance(k, str) and isinstance(v, str)
                 for k, v in data.items()
-            )
-        )
-
-    def validate(self, data: typing.Any) -> bool:
-        if self._is_log_dict(data):
-            return True
+            ):
+                return True
         if isinstance(data, list):
             return all(
-                self._is_log_dict(x) for x in data
+                isinstance(x, dict)
+                and all(
+                    isinstance(k, str) and isinstance(v, str)
+                    for k, v in x.items()
+                )
+                for x in data
             )
         return False
 
@@ -121,7 +118,10 @@ class LogProcessor(DataProcessor):
         data: dict[str, str] | list[dict[str, str]]
     ) -> None:
         if isinstance(data, dict):
-            if not self._is_log_dict(data):
+            if not all(
+                isinstance(k, str) and isinstance(v, str)
+                for k, v in data.items()
+            ):
                 raise ValueError("Improper log data")
             log_str = (
                 f"{data['log_level']}: "
@@ -133,7 +133,12 @@ class LogProcessor(DataProcessor):
             self.total_processed += 1
         elif isinstance(data, list):
             if not all(
-                self._is_log_dict(x) for x in data
+                isinstance(x, dict)
+                and all(
+                    isinstance(k, str) and isinstance(v, str)
+                    for k, v in x.items()
+                )
+                for x in data
             ):
                 raise ValueError("Improper log data")
             for entry in data:
@@ -182,7 +187,7 @@ class DataStream:
                 f"{proc.name}: total "
                 f"{proc.total_processed} items "
                 f"processed, remaining "
-                f"{proc.remaining()} on processor"
+                f"{len(proc._data)} on processor"
             )
 
 
