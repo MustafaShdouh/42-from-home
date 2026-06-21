@@ -2,8 +2,6 @@ from abc import ABC, abstractmethod
 
 
 class Creature(ABC):
-    """Abstract base class for all Creatures."""
-
     def __init__(self, name: str, creature_type: str) -> None:
         self._name = name
         self._creature_type = creature_type
@@ -25,8 +23,6 @@ class Creature(ABC):
 
 
 class Flameling(Creature):
-    """Fire type base Creature."""
-
     def __init__(self) -> None:
         super().__init__("Flameling", "Fire")
 
@@ -35,8 +31,6 @@ class Flameling(Creature):
 
 
 class Pyrodon(Creature):
-    """Fire/Flying type evolved Creature."""
-
     def __init__(self) -> None:
         super().__init__("Pyrodon", "Fire/Flying")
 
@@ -45,8 +39,6 @@ class Pyrodon(Creature):
 
 
 class Aquabub(Creature):
-    """Water type base Creature."""
-
     def __init__(self) -> None:
         super().__init__("Aquabub", "Water")
 
@@ -55,8 +47,6 @@ class Aquabub(Creature):
 
 
 class Torragon(Creature):
-    """Water type evolved Creature."""
-
     def __init__(self) -> None:
         super().__init__("Torragon", "Water")
 

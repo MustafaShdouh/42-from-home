@@ -4,8 +4,6 @@ from ex0.creature import Creature
 
 
 class CreatureFactory(ABC):
-    """Abstract factory for creating Creature families."""
-
     @abstractmethod
     def create_base(self) -> Creature:
         pass
@@ -16,8 +14,6 @@ class CreatureFactory(ABC):
 
 
 class FlameFactory(CreatureFactory):
-    """Factory for the Fire family of Creatures."""
-
     def create_base(self) -> Creature:
         from ex0.creature import Flameling
         return Flameling()
@@ -28,8 +24,6 @@ class FlameFactory(CreatureFactory):
 
 
 class AquaFactory(CreatureFactory):
-    """Factory for the Water family of Creatures."""
-
     def create_base(self) -> Creature:
         from ex0.creature import Aquabub
         return Aquabub()
