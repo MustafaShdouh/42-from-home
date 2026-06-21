@@ -3,8 +3,6 @@ from ex1.capabilities import HealCapability, TransformCapability
 
 
 class Sproutling(Creature, HealCapability):
-    """Grass type base Creature with healing capability."""
-
     def __init__(self) -> None:
         super().__init__("Sproutling", "Grass")
 
@@ -16,8 +14,6 @@ class Sproutling(Creature, HealCapability):
 
 
 class Bloomelle(Creature, HealCapability):
-    """Grass/Fairy type evolved Creature with healing capability."""
-
     def __init__(self) -> None:
         super().__init__("Bloomelle", "Grass/Fairy")
 
@@ -29,8 +25,6 @@ class Bloomelle(Creature, HealCapability):
 
 
 class Shiftling(Creature, TransformCapability):
-    """Normal type base Creature with transform capability."""
-
     def __init__(self) -> None:
         Creature.__init__(self, "Shiftling", "Normal")
         TransformCapability.__init__(self)
@@ -50,8 +44,6 @@ class Shiftling(Creature, TransformCapability):
 
 
 class Morphagon(Creature, TransformCapability):
-    """Normal/Dragon type evolved Creature with transform capability."""
-
     def __init__(self) -> None:
         Creature.__init__(self, "Morphagon", "Normal/Dragon")
         TransformCapability.__init__(self)

@@ -2,7 +2,6 @@ from ex0 import CreatureFactory
 
 
 def test_factory(factory: CreatureFactory) -> None:
-    """Test a factory by creating base and evolved Creatures."""
     print("Testing factory")
     base = factory.create_base()
     print(base.describe())
@@ -16,7 +15,6 @@ def test_battle(
     factory1: CreatureFactory,
     factory2: CreatureFactory,
 ) -> None:
-    """Make base Creatures from two factories fight."""
     print("Testing battle")
     creature1 = factory1.create_base()
     creature2 = factory2.create_base()

@@ -12,7 +12,6 @@ from ex2 import (
 def battle(
     opponents: list[tuple[CreatureFactory, BattleStrategy]],
 ) -> None:
-    """Run a tournament where each opponent fights every other."""
     print("*** Tournament ***")
     print(f"{len(opponents)} opponents involved")
     try:
@@ -79,7 +78,6 @@ def main() -> None:
 def format_opponents(
     opponents: list[tuple[CreatureFactory, BattleStrategy]],
 ) -> str:
-    """Format opponent list for display."""
     labels: list[str] = []
     for factory, strategy in opponents:
         factory_name = get_factory_label(factory)
@@ -89,7 +87,6 @@ def format_opponents(
 
 
 def get_factory_label(factory: CreatureFactory) -> str:
-    """Get a display label for a factory."""
     if isinstance(factory, FlameFactory):
         return "Flameling"
     if isinstance(factory, AquaFactory):
@@ -102,7 +99,6 @@ def get_factory_label(factory: CreatureFactory) -> str:
 
 
 def get_strategy_label(strategy: BattleStrategy) -> str:
-    """Get a display label for a strategy."""
     if isinstance(strategy, NormalStrategy):
         return "Normal"
     if isinstance(strategy, AggressiveStrategy):

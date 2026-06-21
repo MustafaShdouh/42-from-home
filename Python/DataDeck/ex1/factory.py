@@ -3,8 +3,6 @@ from ex0.factory import CreatureFactory
 
 
 class HealingCreatureFactory(CreatureFactory):
-    """Factory for Creatures with healing capabilities."""
-
     def create_base(self) -> Creature:
         from ex1.creatures import Sproutling
         return Sproutling()
@@ -15,8 +13,6 @@ class HealingCreatureFactory(CreatureFactory):
 
 
 class TransformCreatureFactory(CreatureFactory):
-    """Factory for Creatures with transform capabilities."""
-
     def create_base(self) -> Creature:
         from ex1.creatures import Shiftling
         return Shiftling()

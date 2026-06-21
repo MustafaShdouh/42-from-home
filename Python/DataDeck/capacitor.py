@@ -8,7 +8,6 @@ from ex1 import (
 
 
 def test_healing(factory: CreatureFactory) -> None:
-    """Test Creatures with healing capability."""
     print("Testing Creature with healing capability")
     print("base:")
     base = factory.create_base()
@@ -25,7 +24,6 @@ def test_healing(factory: CreatureFactory) -> None:
 
 
 def test_transform(factory: CreatureFactory) -> None:
-    """Test Creatures with transform capability."""
     print("Testing Creature with transform capability")
     print("base:")
     base = factory.create_base()

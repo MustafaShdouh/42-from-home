@@ -5,13 +5,10 @@ from ex1.capabilities import HealCapability, TransformCapability
 
 
 class InvalidStrategyError(Exception):
-    """Raised when a strategy is applied to an incompatible Creature."""
     pass
 
 
 class BattleStrategy(ABC):
-    """Abstract base class for battle strategies."""
-
     @abstractmethod
     def is_valid(self, creature: Creature) -> bool:
         pass
@@ -22,8 +19,6 @@ class BattleStrategy(ABC):
 
 
 class NormalStrategy(BattleStrategy):
-    """Strategy suitable for any Creature: simply attacks."""
-
     def is_valid(self, creature: Creature) -> bool:
         return True
 
@@ -37,8 +32,6 @@ class NormalStrategy(BattleStrategy):
 
 
 class AggressiveStrategy(BattleStrategy):
-    """Strategy for Creatures with transform capability."""
-
     def is_valid(self, creature: Creature) -> bool:
         return isinstance(creature, TransformCapability)
 
@@ -57,8 +50,6 @@ class AggressiveStrategy(BattleStrategy):
 
 
 class DefensiveStrategy(BattleStrategy):
-    """Strategy for Creatures with healing capability."""
-
     def is_valid(self, creature: Creature) -> bool:
         return isinstance(creature, HealCapability)
 
