@@ -1,6 +1,6 @@
 def main() -> None:
-
     print("LOADING STATUS: Loading programs...\n")
+    
     try:
         from importlib.metadata import version
     except ImportError:
@@ -71,7 +71,6 @@ def main() -> None:
         print("Generating visualization...")
         matplotlib.pyplot.plot(xpoints, ypoints, color='green')
         matplotlib.pyplot.axis('off')
-    
         matplotlib.pyplot.savefig("matrix_analysis.png")
     
         print("Analysis complete!")
