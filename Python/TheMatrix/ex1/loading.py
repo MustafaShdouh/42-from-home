@@ -1,3 +1,5 @@
+import sys
+
 def main() -> None:
     print("LOADING STATUS: Loading programs...\n")
 
@@ -75,6 +77,9 @@ def main() -> None:
 
         print("Analysis complete!")
         print("Results saved to: matrix_analysis.png")
+    else:
+        print("Exiting.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
