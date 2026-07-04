@@ -1,5 +1,6 @@
 import sys
 
+
 def main() -> None:
     print("LOADING STATUS: Loading programs...\n")
 
