@@ -10,15 +10,15 @@ def main() -> None:
 
     try:
         import numpy
-        numpy_name = numpy.__name__
-        numpy_version = version("numpy")
+        numpy_name: str = numpy.__name__
+        numpy_version: str = version("numpy")
     except ImportError:
         print("numpy is missing.")
 
     try:
         import pandas
-        pandas_name = pandas.__name__
-        pandas_version = pandas.__version__
+        pandas_name: str = pandas.__name__
+        pandas_version: str = pandas.__version__
     except ImportError as e:
         if "numpy" in str(e).lower():
             print("pandas is installed, but it crashed "
@@ -28,8 +28,8 @@ def main() -> None:
 
     try:
         import matplotlib.pyplot
-        matplotlib_name = matplotlib.__name__
-        matplotlib_version = matplotlib.__version__
+        matplotlib_name: str = matplotlib.__name__
+        matplotlib_version: str = matplotlib.__version__
     except ImportError as e:
         if "numpy" in str(e).lower():
             print("matplotlib is installed, but it "

@@ -5,8 +5,8 @@ except ModuleNotFoundError:
     print("Python-dotenv module is missing.\nUse: pip install python-dotenv\n")
 
 
-def get_env_var(key, default=None):
-    value = os.environ.get(key)
+def get_env_var(key: str, default: str | None = None) -> str | None:
+    value: str | None = os.environ.get(key)
     if value is None or value.strip() == "":
         return default
     return value
@@ -19,17 +19,17 @@ def main() -> None:
     is_configured: bool = True
     try:
         is_loaded: bool = dotenv.load_dotenv()
-    except:
+    except Exception:
         is_loaded = False
 
     mode: str = "nothing"
 
     if is_loaded:
-        MATRIX_MODE = get_env_var("MATRIX_MODE")
-        DATABASE_URL = get_env_var("DATABASE_URL")
-        API_KEY = get_env_var("API_KEY")
-        LOG_LEVEL = get_env_var("LOG_LEVEL")
-        ZION_ENDPOINT = get_env_var("ZION_ENDPOINT")
+        MATRIX_MODE: str | None = get_env_var("MATRIX_MODE")
+        DATABASE_URL: str | None = get_env_var("DATABASE_URL")
+        API_KEY: str | None = get_env_var("API_KEY")
+        LOG_LEVEL: str | None = get_env_var("LOG_LEVEL")
+        ZION_ENDPOINT: str | None = get_env_var("ZION_ENDPOINT")
 
         if MATRIX_MODE is None:
             print("MATRIX_MODE is missing.")
@@ -47,7 +47,7 @@ def main() -> None:
             print("ZION_ENDPOINT is missing.")
             is_configured = False
 
-        if is_configured:
+        if is_configured and MATRIX_MODE is not None and LOG_LEVEL is not None:
             if MATRIX_MODE.lower().capitalize() == "Production":
                 mode = "production"
                 print("Configuration loaded:")
