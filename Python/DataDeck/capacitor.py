@@ -48,6 +48,7 @@ def main() -> None:
     transform_factory = TransformCreatureFactory()
 
     test_healing(healing_factory)
+    print()
     test_transform(transform_factory)
 
 

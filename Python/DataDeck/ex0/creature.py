@@ -6,14 +6,6 @@ class Creature(ABC):
         self._name = name
         self._creature_type = creature_type
 
-    @property
-    def name(self) -> str:
-        return self._name
-
-    @property
-    def creature_type(self) -> str:
-        return self._creature_type
-
     def describe(self) -> str:
         return f"{self._name} is a {self._creature_type} type Creature"
 

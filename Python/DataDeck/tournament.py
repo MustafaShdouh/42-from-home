@@ -21,7 +21,7 @@ def battle(
                 factory_b, strategy_b = opponents[j]
                 creature_a = factory_a.create_base()
                 creature_b = factory_b.create_base()
-                print("* Battle *")
+                print("\n* Battle *")
                 print(creature_a.describe())
                 print("vs.")
                 print(creature_b.describe())
@@ -30,6 +30,39 @@ def battle(
                 print(strategy_b.act(creature_b))
     except InvalidStrategyError as e:
         print(f"Battle error, aborting tournament: {e}")
+
+
+def format_opponents(
+    opponents: list[tuple[CreatureFactory, BattleStrategy]],
+) -> str:
+    labels: list[str] = []
+    for factory, strategy in opponents:
+        factory_name = get_factory_label(factory)
+        strategy_name = get_strategy_label(strategy)
+        labels.append(f"({factory_name}+{strategy_name})")
+    return ", ".join(labels)
+
+
+def get_factory_label(factory: CreatureFactory) -> str:
+    if isinstance(factory, FlameFactory):
+        return "Flameling"
+    if isinstance(factory, AquaFactory):
+        return "Aquabub"
+    if isinstance(factory, HealingCreatureFactory):
+        return "Healing"
+    if isinstance(factory, TransformCreatureFactory):
+        return "Transform"
+    return "Unknown"
+
+
+def get_strategy_label(strategy: BattleStrategy) -> str:
+    if isinstance(strategy, NormalStrategy):
+        return "Normal"
+    if isinstance(strategy, AggressiveStrategy):
+        return "Aggressive"
+    if isinstance(strategy, DefensiveStrategy):
+        return "Defensive"
+    return "Unknown"
 
 
 def main() -> None:
@@ -70,42 +103,11 @@ def main() -> None:
     ]
 
     for name, opponents in tournaments:
+        if "0" not in name:
+            print()
         print(name)
         print(f"[ {format_opponents(opponents)} ]")
         battle(opponents)
-
-
-def format_opponents(
-    opponents: list[tuple[CreatureFactory, BattleStrategy]],
-) -> str:
-    labels: list[str] = []
-    for factory, strategy in opponents:
-        factory_name = get_factory_label(factory)
-        strategy_name = get_strategy_label(strategy)
-        labels.append(f"({factory_name}+{strategy_name})")
-    return ", ".join(labels)
-
-
-def get_factory_label(factory: CreatureFactory) -> str:
-    if isinstance(factory, FlameFactory):
-        return "Flameling"
-    if isinstance(factory, AquaFactory):
-        return "Aquabub"
-    if isinstance(factory, HealingCreatureFactory):
-        return "Healing"
-    if isinstance(factory, TransformCreatureFactory):
-        return "Transform"
-    return "Unknown"
-
-
-def get_strategy_label(strategy: BattleStrategy) -> str:
-    if isinstance(strategy, NormalStrategy):
-        return "Normal"
-    if isinstance(strategy, AggressiveStrategy):
-        return "Aggressive"
-    if isinstance(strategy, DefensiveStrategy):
-        return "Defensive"
-    return "Unknown"
 
 
 if __name__ == "__main__":
