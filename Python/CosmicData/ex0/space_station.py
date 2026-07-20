@@ -32,16 +32,17 @@ def main() -> None:
             crew_size=6,
             power_level=85.5,
             oxygen_level=92.3,
-            last_maintenance="2005-09-06",
+            last_maintenance=datetime.fromisoformat("2005-09-06"),
             is_operational=True,
             notes=None
         )
     except ValidationError as e:
         for error in e.errors():
-            field = error["loc"][0] if error["loc"] else "unknown"
+            field = str(error["loc"][0]) if error["loc"] else "unknown"
             print(messages.get(field, f"Error in {field}: {error['msg']}"))
 
-    print("Space Station Data Validation\n========================================")
+    print("Space Station Data Validation")
+    print("========================================")
     try:
         print("Valid station created:")
         print(f"ID: {user.station_id}")
@@ -49,26 +50,27 @@ def main() -> None:
         print(f"Crew: {user.crew_size} people")
         print(f"Power: {user.power_level}%")
         print(f"Oxygen: {user.oxygen_level}%")
-        print("Status: Operational" if user.is_operational else "Status: Not Operational")
+        print("Status: Operational" if user.is_operational else "Status: "
+              "Not Operational")
         print("\n========================================")
     except UnboundLocalError:
         print("Not all the variables are initialized")
 
     print("Expected validation error:")
     try:
-        error_user = User(
+        User(
             station_id="ISS001",
             name="International Space Station",
             crew_size=21,
             power_level=50.3,
             oxygen_level=78.5,
-            last_maintenance="2005-09-06",
+            last_maintenance=datetime.fromisoformat("2005-09-06"),
             is_operational=True,
             notes=None
         )
     except ValidationError as e:
         for error in e.errors():
-            field = error["loc"][0] if error["loc"] else "unknown"
+            field = str(error["loc"][0]) if error["loc"] else "unknown"
             print(messages.get(field, f"Error in {field}: {error['msg']}"))
 
 
