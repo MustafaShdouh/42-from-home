@@ -22,7 +22,7 @@ def main() -> None:
         "last_maintenance": "Last maintenance date is missing or invalid.",
         "power_level": "Power level must be between 0.0 and 100.0.",
         "oxygen_level": "Oxygen level must be between 0.0 and 100.0.",
-        "notes": "Notes should be grater than 0 and less than 200"
+        "notes": "Notes should be grater than 0 and less than 200",
     }
 
     try:
@@ -34,7 +34,7 @@ def main() -> None:
             oxygen_level=92.3,
             last_maintenance=datetime.fromisoformat("2005-09-06"),
             is_operational=True,
-            notes=None
+            notes=None,
         )
     except ValidationError as e:
         for error in e.errors():
@@ -50,8 +50,9 @@ def main() -> None:
         print(f"Crew: {user.crew_size} people")
         print(f"Power: {user.power_level}%")
         print(f"Oxygen: {user.oxygen_level}%")
-        print("Status: Operational" if user.is_operational else "Status: "
-              "Not Operational")
+        print(
+            "Status: Operational" if user.is_operational else "Status: Not Operational"
+        )
         print("\n========================================")
     except UnboundLocalError:
         print("Not all the variables are initialized")
@@ -66,7 +67,7 @@ def main() -> None:
             oxygen_level=78.5,
             last_maintenance=datetime.fromisoformat("2005-09-06"),
             is_operational=True,
-            notes=None
+            notes=None,
         )
     except ValidationError as e:
         for error in e.errors():

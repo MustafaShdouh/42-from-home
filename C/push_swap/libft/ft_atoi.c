@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-//#include <stdlib.h>
+#include <stdlib.h>
 #include "libft.h"
 
 int	ft_atoi(const char *nptr)
@@ -39,13 +39,13 @@ int	ft_atoi(const char *nptr)
 	return (res * sign);
 }
 
-// int	main(void)
-// {
-// 	int	res;
-// 	const char *nptr = "a21";
+int	main(void)
+{
+int	res;
+const char *nptr = "21";
 
-// 	res = ft_atoi(nptr);
-// 	printf("%d\n", res);
-// 	res = atoi(nptr);
-// 	printf("%d\n", res);
-// }
+res = ft_atoi(nptr);
+printf("%d\n", res);
+res = atoi(nptr);
+printf("%d\n", res);
+}
