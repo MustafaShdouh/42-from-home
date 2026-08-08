@@ -1,6 +1,7 @@
 def artifact_sorter(artifacts: list[dict]) -> list[dict]:
     try:
-        return list(sorted(artifacts, key=lambda item: item["power"], reverse=True))
+        return list(sorted(artifacts, key=lambda item:
+                    item["power"], reverse=True))
     except (TypeError, AttributeError, KeyError) as e:
         print(e)
 

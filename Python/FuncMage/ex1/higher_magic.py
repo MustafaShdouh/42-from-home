@@ -1,4 +1,5 @@
 from collections.abc import Callable
+from data_generator import FuncMageDataGenerator as gen
 
 
 def spell_combiner(spell1: Callable, spell2: Callable) -> Callable:
@@ -6,25 +7,26 @@ def spell_combiner(spell1: Callable, spell2: Callable) -> Callable:
         raise TypeError("Object is not callable.")
 
     def combined_spell(target: str, power: int) -> tuple[str, str]:
-        if power <= 0:
+
+        if int(power) <= 0:
             raise ValueError("Power can't be zero or negative")
-        str1 = spell1(target, power)
-        str2 = spell2(target, power)
+        str1 = spell1(target, int(power))
+        str2 = spell2(target, int(power))
         return str1, str2
 
     return combined_spell
 
 
-def power_amplifier(base_spell: Callable, multiplied: int) -> Callable:
-    if multiplied <= 0:
+def power_amplifier(base_spell: Callable, multiplier: int) -> Callable:
+    if multiplier <= 0:
         raise ValueError("cannot amplify with 0 or negative number.")
     if not callable(base_spell):
         raise TypeError("Object is not callable.")
 
     def amplified(target: str, power: int) -> str:
-        if power <= 0:
+        if int(power) <= 0:
             raise ValueError("Power can't be zero or negative")
-        return base_spell(target, power * multiplied)
+        return base_spell(target, int(power) * int(multiplier))
 
     return amplified
 
@@ -34,10 +36,8 @@ def conditional_caster(condition: Callable, spell: Callable) -> Callable:
         raise TypeError("Object is not callable.")
 
     def conditional_function(target: str, power: int) -> str:
-        if power <= 0:
-            raise ValueError("Power can't be zero or negative")
-        if condition(target, power):
-            return spell(target, power)
+        if condition(str(target), int(power)):
+            return spell(str(target), int(power))
         return "Spell fizzled"
 
     return conditional_function
@@ -49,54 +49,63 @@ def spell_sequence(spells: list[Callable]) -> Callable:
             raise TypeError("Object is not callable.")
 
     def spell_casting(target: str, power: int) -> list[str]:
-        if power <= 0:
+        if int(power) <= 0:
             raise ValueError("Power can't be zero or negative")
-        return [spell(target, power) for spell in spells]
+        return [spell(str(target), int(power)) for spell in spells]
 
     return spell_casting
 
 
 def heal(target: str, power: int) -> str:
-    return f"{target} healed for {power} HP."
+    return f"{target!s} healed for {power} HP."
 
 
 def fireball(target: str, power: int) -> str:
-    return f"{target} casted fireballed for {power} damage."
+    return f"{target!s} casted fireball for {power} damage."
 
 
 def zap(target: str, power: int) -> str:
-    return f"{target} was zapped for {power} damage."
+    return f"{target!s} was zapped for {power} damage."
 
 
 def poison(target: str, power: int) -> str:
-    return f"{target} was poisoned for {power} damage."
+    return f"{target!s} was poisoned for {power} damage."
 
 
 def is_powerful(target: str, power: int) -> bool:
-    if power <= 0:
-        return False
-    return True
+    return not int(power) <= 0
 
 
 def main():
-    print("Testing spell_combiner:")
+    random_mages = gen.generate_mages(1)
+
+    test_subject = random_mages[0]
+    dynamic_target = test_subject["name"]
+    dynamic_power = test_subject["power"]
+
+    print(
+        f"Dynamically testing on {dynamic_target} "
+        f"(Generated Power: {dynamic_power})"
+    )
+
+    print("\nTesting spell_combiner:")
     try:
         combined = spell_combiner(fireball, heal)
-        print(combined("Dragon", 20))
+        print(combined(dynamic_target, dynamic_power))
     except (ValueError, TypeError) as e:
         print(e)
 
-    print("\nTesting power_amplifier:")
+    print("\nTesting power_amplifier (10x multiplier):")
     try:
         amplified = power_amplifier(fireball, 10)
-        print(amplified("Wizard", 10))
+        print(amplified(dynamic_target, dynamic_power))
     except ValueError as e:
         print(e)
 
     print("\nTesting conditional_caster:")
     try:
         condition = conditional_caster(is_powerful, fireball)
-        print(condition("Goblin", 1))
+        print(condition(dynamic_target, dynamic_power))
     except ValueError as e:
         print(e)
 
@@ -104,7 +113,10 @@ def main():
     try:
         spell_list = [fireball, zap, poison]
         sequence = spell_sequence(spell_list)
-        print(sequence("Knight", 20))
+
+        results = sequence(dynamic_target, dynamic_power)
+        for r in results:
+            print(f"{r}")
     except ValueError as e:
         print(e)
 
