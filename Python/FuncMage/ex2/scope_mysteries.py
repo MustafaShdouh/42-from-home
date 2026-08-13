@@ -29,6 +29,10 @@ def enchantment_factory(enchantment_type: str) -> Callable:
     return enchantment_adder
 
 
+def memory_vault() -> dict[str, Callable]:
+    def store(key: Any, value: Any)
+
+
 def main():
     print("Testing mage_counter:")
     count = mage_counter()
