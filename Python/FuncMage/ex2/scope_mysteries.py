@@ -30,7 +30,15 @@ def enchantment_factory(enchantment_type: str) -> Callable:
 
 
 def memory_vault() -> dict[str, Callable]:
-    def store(key: Any, value: Any)
+    vault = {}
+
+    def store(key, value):
+        vault[key] = value
+
+    def recall(key):
+        return vault.get(key, "Memory not found")
+
+    return {'store': store, 'recall': recall}
 
 
 def main():
@@ -51,6 +59,14 @@ def main():
     flame_factory = enchantment_factory("Flaming")
     print(flame_factory("Sword"))
     print()
+
+    print("Testing memory_vault:")
+    vault = memory_vault()
+    print("Storing the key '1' with the value 42")
+    store_spell = vault['store']
+    recall_spell = vault['recall']
+    store_spell('1', 42)
+    print({recall_spell('1')})
 
 
 if __name__ == "__main__":
