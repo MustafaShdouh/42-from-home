@@ -36,20 +36,25 @@ class SpaceMission(BaseModel):
     def validate_mission_rules(self) -> Self:
         if not self.mission_id.startswith("M"):
             raise ValueError('Mission ID must start with "M"')
-            
-        has_lead = any(member.rank in (Rank.CAPTAIN, Rank.COMMANDER) for member in self.crew)
+
+        has_lead = any(member.rank in (Rank.CAPTAIN, Rank.COMMANDER)
+                       for member in self.crew)
         if not has_lead:
-            raise ValueError("Mission must have at least one Commander or Captain")
-            
+            raise ValueError(
+                "Mission must have at least one Commander or Captain")
+
         if self.duration_days > 365:
-            experienced_count = sum(1 for member in self.crew if member.years_experience >= 5)
+            experienced_count = sum(
+                1 for member in self.crew if member.years_experience >= 5)
             if (experienced_count / len(self.crew)) < 0.5:
-                raise ValueError("Long missions (> 365 days) need 50% experienced crew (5+ years)")
-                
+                raise ValueError(
+                    "Long missions (> 365 days) need "
+                    "50% experienced crew (5+ years)")
+
         all_active = all(member.is_active for member in self.crew)
         if not all_active:
             raise ValueError("All crew members must be active")
-            
+
         return self
 
 
@@ -65,8 +70,9 @@ def main() -> None:
         "budget_millions": "Budget must be between 1.0 and 10000.0 million."
     }
 
-    print("Space Mission Crew Validation\n=========================================")
-    
+    print("Space Mission Crew Validation\n"
+          "=========================================")
+
     try:
         valid_mission = SpaceMission(
             mission_id="M2024_MARS",
@@ -76,9 +82,18 @@ def main() -> None:
             duration_days=900,
             budget_millions=2500.0,
             crew=[
-                CrewMember(member_id="C01", name="Sarah Connor", rank=Rank.COMMANDER, age=45, specialization="Mission Command", years_experience=15, is_active=True),
-                CrewMember(member_id="C02", name="John Smith", rank=Rank.LIEUTENANT, age=35, specialization="Navigation", years_experience=8, is_active=True),
-                CrewMember(member_id="C03", name="Alice Johnson", rank=Rank.OFFICER, age=28, specialization="Engineering", years_experience=3, is_active=True)
+                CrewMember(member_id="C01", name="Sarah Connor",
+                           rank=Rank.COMMANDER, age=45,
+                           specialization="Mission Command",
+                           years_experience=15, is_active=True),
+                CrewMember(member_id="C02", name="John Smith",
+                           rank=Rank.LIEUTENANT, age=35,
+                           specialization="Navigation",
+                           years_experience=8, is_active=True),
+                CrewMember(member_id="C03", name="Alice Johnson",
+                           rank=Rank.OFFICER, age=28,
+                           specialization="Engineering", years_experience=3,
+                           is_active=True)
             ]
         )
         print("Valid mission created:")
@@ -90,7 +105,9 @@ def main() -> None:
         print(f"Crew size: {len(valid_mission.crew)}")
         print("Crew members:")
         for member in valid_mission.crew:
-            print(f"  - {member.name} ({member.rank.value}) - {member.specialization}")
+            print(
+                f" - {member.name} ({member.rank.value})"
+                f" - {member.specialization}")
         print("=========================================")
     except ValidationError as e:
         for error in e.errors():
@@ -100,7 +117,7 @@ def main() -> None:
             else:
                 clean_msg = error['msg'].replace('Value error, ', '')
                 print(f"Validation Error: {clean_msg}")
-        
+
     print("Expected validation error:")
     try:
         SpaceMission(
@@ -111,9 +128,18 @@ def main() -> None:
             duration_days=400,
             budget_millions=500.0,
             crew=[
-                CrewMember(member_id="C04", name="Bob Bobson", rank=Rank.LIEUTENANT, specialization="Geology", years_experience=4, is_active=True),
-                CrewMember(member_id="C05", name="Eve Evans", rank=Rank.OFFICER, age=25, specialization="Life Support", years_experience=6, is_active=True),
-                CrewMember(member_id="C06", name="Mustafa Shdouh", rank=Rank.COMMANDER, age=20, specialization="Software Engineer", years_experience=6, is_active=True)
+                CrewMember(member_id="C04", name="Bob Bobson",
+                           rank=Rank.LIEUTENANT,
+                           specialization="Geology", years_experience=4,
+                           is_active=True, age=20),
+                CrewMember(member_id="C05", name="Eve Evans",
+                           rank=Rank.OFFICER, age=25,
+                           specialization="Life Support", years_experience=6,
+                           is_active=True),
+                CrewMember(member_id="C06", name="Mustafa Shdouh",
+                           rank=Rank.OFFICER, age=20,
+                           specialization="Software Engineer",
+                           years_experience=6, is_active=True)
             ]
         )
     except ValidationError as e:
@@ -124,6 +150,7 @@ def main() -> None:
             else:
                 clean_msg = error['msg'].replace('Value error, ', '')
                 print(f"{clean_msg}")
+
 
 if __name__ == "__main__":
     main()

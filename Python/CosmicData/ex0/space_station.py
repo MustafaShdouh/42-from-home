@@ -51,7 +51,8 @@ def main() -> None:
         print(f"Power: {user.power_level}%")
         print(f"Oxygen: {user.oxygen_level}%")
         print(
-            "Status: Operational" if user.is_operational else "Status: Not Operational"
+            "Status: Operational" if user.is_operational
+            else "Status: Not Operational"
         )
         print("\n========================================")
     except UnboundLocalError:
