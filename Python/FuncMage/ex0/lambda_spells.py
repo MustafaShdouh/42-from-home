@@ -4,6 +4,7 @@ def artifact_sorter(artifacts: list[dict]) -> list[dict]:
                     item["power"], reverse=True))
     except (TypeError, AttributeError, KeyError) as e:
         print(e)
+        return []
 
 
 def power_filter(mages: list[dict], min_power: int) -> list[dict]:
@@ -11,6 +12,7 @@ def power_filter(mages: list[dict], min_power: int) -> list[dict]:
         return list(filter(lambda x: x["power"] >= min_power, mages))
     except (ValueError, TypeError, AttributeError, KeyError) as e:
         print(e)
+        return []
 
 
 def spell_transformer(spells: list[str]) -> list[str]:
@@ -18,6 +20,7 @@ def spell_transformer(spells: list[str]) -> list[str]:
         return list(map(lambda x: "* " + x + " *", spells))
     except TypeError as e:
         print(e)
+        return []
 
 
 def mage_stats(mages: list[dict]) -> dict:
@@ -33,6 +36,7 @@ def mage_stats(mages: list[dict]) -> dict:
         }
     except (TypeError, ValueError, ZeroDivisionError, KeyError) as e:
         print(e)
+        return {}
 
 
 def main():
