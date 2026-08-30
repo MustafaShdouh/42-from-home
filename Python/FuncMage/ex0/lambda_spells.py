@@ -50,6 +50,7 @@ def main():
     sorted_artifacts = artifact_sorter(artifacts)
 
     print("Sorted Artifacts:\n")
+    i = 0
     try:
         for i, x in enumerate(sorted_artifacts, start=1):
             print(f"{i}: {x}")
@@ -67,6 +68,7 @@ def main():
 
     filtered_powers = power_filter(mages, 78)
 
+    i = 0
     try:
         for i, x in enumerate(filtered_powers, start=1):
             print(f"{i}: {x}")

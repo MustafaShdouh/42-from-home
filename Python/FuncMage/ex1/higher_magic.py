@@ -7,7 +7,6 @@ def spell_combiner(spell1: Callable, spell2: Callable) -> Callable:
         raise TypeError("Object is not callable.")
 
     def combined_spell(target: str, power: int) -> tuple[str, str]:
-
         if int(power) <= 0:
             raise ValueError("Power can't be zero or negative")
         str1 = spell1(target, int(power))
